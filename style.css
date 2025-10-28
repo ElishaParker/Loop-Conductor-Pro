@@ -1,0 +1,36 @@
+body {
+  background: #111;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+.controls {
+  background: #222;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  margin-bottom: 15px;
+}
+input, button {
+  margin: 5px;
+  background: #000;
+  color: #0f0;
+  border: 1px solid #333;
+  padding: 5px;
+}
+button {
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+button#play { background: #0a0; color: #fff; }
+button#stop { background: #a00; color: #fff; }
+canvas {
+  background: #000;
+  border: 1px solid #333;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+}

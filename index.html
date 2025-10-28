@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoopConductor Pro v2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🎵 LoopConductor Pro v2</h1>
+  <div class="controls">
+    <label>Bars:</label> <input id="bars" value="4/4"><br>
+    <label>BPM:</label> <input id="bpm" type="number" value="120"><br>
+    <label>Notes:</label> <input id="notes" value="C4-D4-E4-G4"><br>
+    <label>Base Pitch (Hz):</label> <input id="pitch" type="number" value="440" min="0" max="16000"><br>
+    <label>LFO Pitch (Hz):</label> <input id="lfoPitch" type="number" value="0" step="0.1"><br>
+    <label>LFO Pan (Hz):</label> <input id="lfoPan" type="number" value="0" step="0.1"><br>
+    <label>LFO Volume (Hz):</label> <input id="lfoVolume" type="number" value="0" step="0.1"><br>
+    <label>Master Volume:</label> <input id="masterVol" type="range" min="0" max="1" step="0.01" value="0.8"><br>
+    <h3>Oscilloscope Settings</h3>
+    <label>Line Thickness:</label> <input id="lineWidth" type="range" min="1" max="10" value="2"><br>
+    <label>Line Color:</label> <input id="lineColor" type="color" value="#00ff00"><br>
+    <button id="play">▶ Play</button>
+    <button id="stop">⏹ Stop</button>
+  </div>
+  <canvas id="oscilloscope" width="800" height="200"></canvas>
+
+  <script type="module">
+    import LoopConductor from './loopconductor.js';
+
+    const playBtn = document.getElementById('play');
+    const stopBtn = document.getElementById('stop');
+
+    let loop;
+
+    playBtn.onclick = () => {
+      if (loop) loop.stop();
+      loop = new LoopConductor(
+        document.getElementById('bars').value,
+        parseInt(document.getElementById('bpm').value),
+        document.getElementById('notes').value,
+        parseFloat(document.getElementById('pitch').value),
+        parseFloat(document.getElementById('lfoPitch').value),
+        parseFloat(document.getElementById('lfoPan').value),
+        parseFloat(document.getElementById('lfoVolume').value),
+        parseFloat(document.getElementById('masterVol').value),
+        parseInt(document.getElementById('lineWidth').value),
+        document.getElementById('lineColor').value
+      );
+      loop.play();
+    };
+
+    stopBtn.onclick = () => loop?.stop();
+  </script>
+</body>
+</html>
